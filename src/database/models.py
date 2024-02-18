@@ -2,7 +2,7 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, String
 from sqlalchemy import create_engine
 
-engine = create_engine("sqlite:///backdoor.db", echo=True)
+engine = create_engine("sqlite:///backdoor.db", echo=False)
 
 
 class Base(DeclarativeBase):
