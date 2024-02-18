@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, sessionmaker
 from models import Computer
 
 
@@ -9,24 +9,17 @@ engine = create_engine("sqlite:///backdoor.db", echo=True)
 class Database:
     
     def __init__(self):
-        with Session(autoflush=False, bind=engine) as db:
-            self.db = Session(autoflush=False, bind=engine)
+        SessionLocal = sessionmaker(autoflush=False, bind=engine)
+        self.db = SessionLocal()
 
     
-    def create_user(self, name: str, status: int = 0):
+    def create_user(self, name: str):
         self.db.add(Computer(
-            name=name,
-            status=status
+            pc_name = name ,
+            status_id = 0,
+            status = "none",
         ))
         self.db.commit()
 
-
-class DatabaseTest:
-    
-    def create_user(self, name: str, status: int = 0):
-        with Session(autoflush=False, bind=engine) as db:
-            db.add(Computer(name=name, status=status))     # добавляем в бд
-            db.commit()     # сохраняем изменения
-
 if __name__ == "__main__":
-    DatabaseTest.create_user("t6est", 12)
+    Database().create_user(name="ilpdakz")

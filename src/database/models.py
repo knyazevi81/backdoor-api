@@ -13,7 +13,8 @@ class Computer(Base):
     __tablename__= "computers"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
+    pc_name = Column(String)
+    status_id = Column(Integer)
     status = Column(Integer)
 
 
