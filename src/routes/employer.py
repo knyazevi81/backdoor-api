@@ -1,8 +1,11 @@
 from fastapi import APIRouter
+from database.db import Database
+from database.models import Computer
 
-route = APIRouter(tags=["dash_proces"])
+
+route = APIRouter(tags=["employer"])
 
 
-@route.get("/dashboard")
-async def send_pc_status():
+@route.post("/register")
+def register_my_pc(pc_name: int):
     pass
